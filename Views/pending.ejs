@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Welcome Home</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            flex: 0 0 auto;
+        }
+
+        main {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 150px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: green;
+            margin-top: -70px;
+        }
+
+        p {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+    
+
+
+        
+        .user-actions {
+            display: flex;
+            flex-direction: row; /* Display buttons in a row */
+            justify-content: center; /* Center the buttons horizontally */
+            align-items: flex-end; /* Align the buttons to the bottom */
+            margin-top: 110px; /* Add space between the table and buttons */
+        }
+
+        button[type="submit"] {
+            background-color: green;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 20px; /* Add space between buttons */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005608;
+        }
+
+    </style>
+</head>
+<body>
+    <%- include('./partials/header'); %>
+    <main>
+        <h2>Welcome</h2>
+        <p><strong>Here is a list of all your Pending Tasks</strong></p>
+        <% if (tasks.length > 0) { %>
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                </tr>
+                <% tasks.forEach(function(task) { %>
+                    <tr>
+                        <td><%= task.description %></td>
+                        <td><%= task.status %></td>
+                        <td><%= task.createdDate.toDateString() %></td>
+                    </tr>
+                <% }); %>
+            </table>
+        <% } else { %>
+            <p>No pending tasks available.</p>
+        <% } %>
+    
+
+        <div class="user-actions">
+        <a href="/todo/task">
+            <button type="submit">Create Task</button>
+            </a>
+
+            <a href="/todo/completed">
+                <button type="submit">View Completed Task</button>
+                </a>
+
+                <a href="/todo/welcome">
+                    <button type="submit">Go back</button>
+                    </a>
+                </div>
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>
+

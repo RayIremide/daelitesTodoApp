@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ToDo App</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+           
+        }
+
+        header {
+            flex: 0 0 auto; /* The header will not grow or shrink */
+        }
+
+        main {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            flex: 1 0 auto; /* The main content will grow to fill the remaining space */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+        }
+
+        h1 {
+            color: green; 
+            font-size: 36px; 
+        }
+
+        p {
+            font-size: 20px;
+            text-align: center; /* Center the paragraph text */
+            line-height: 1.5;
+            margin-top: 20px; /* Add space above the paragraph */
+        }
+        h3 {
+            margin-top: 300px; /* Add space above the h3 element */
+            text-align: center; /* Center the h3 text */
+            font-size: 24px;
+        }
+        .user-actions {
+            margin-top: auto; /* Push the buttons to the bottom */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the buttons horizontally */
+        }
+
+        #login-btn, #signup-btn {
+            background-color: green;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Add space between the buttons */
+        }
+
+        #login-btn:hover, #signup-btn:hover {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the header partial -->
+    <%- include('./partials/header'); %>
+
+    <!-- Main content of the page -->
+    <main>
+        <br>
+        <h1>WELCOME TO DAELITES TODO APP - Your Personal Task Manager</h1>
+        <br>
+        <br>
+        <p>Do you ever find yourself overwhelmed with tasks and to-dos? Are you struggling to keep track of everything you need to accomplish? </p>
+            <br>
+            <br>
+            <p>Look no further! DAELITES TODO APP is here to help you stay organized and in control of your life.</p>
+            <br>
+            <br>
+            <h3>SIGN UP TO GET STARTED!</h3>
+
+        <div class="user-actions">
+            <a href="/todo/login">
+                <button id="login-btn">Log In</button>
+            </a>
+            <a href="/todo/signup">
+                <button id="signup-btn">Sign Up</button>
+            </a>
+        </div>
+    </main>
+
+    <!-- Include the footer partial -->
+    <%- include('./partials/footer') %>
+</body>
+</html>
