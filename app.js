@@ -4,6 +4,7 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const path =require('path')
 
 const router = require('./Router/userRoute')
 const viewRouter= require('./Views/viewRouter')
@@ -28,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.set('view engine', 'ejs')
-
+app.set('views', path.join(__dirname, 'Views'));
 app.use('/todo', viewRouter)
 
 // home route
