@@ -3,14 +3,22 @@
         background-color: green;
         color: #fff;
         text-align: center;
-        padding: 10px 0;
+        padding: 20px 0; /* Increased padding for better spacing on mobile */
     }
 
     footer p {
-        font-size: 14px; /* Adjust the font size as needed */
+        font-size: 16px; /* Adjust the font size for mobile */
+        margin: 10px 0; /* Add vertical spacing between the content */
+    }
+
+    @media (max-width: 768px) {
+        /* Apply mobile styles for screens with a maximum width of 768px */
+        footer {
+            padding: 10px 0; /* Decreased padding for smaller screens */
+        }
     }
 </style>
 
 <footer>
-    <p>&copy;App created by Iremide Olatunji 2023</p>
+    <p>&copy; App created by Iremide Olatunji 2023</p>
 </footer>
