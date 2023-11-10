@@ -1,6 +1,7 @@
 const express = require('express');
 const userService = require('../Services/user.services');
 const taskService = require('../Services/task.services')
+const SignUpValidator = require('../Validator/ValidatorMiddleware')
 // const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const logger = require('../logger/index')
@@ -23,7 +24,7 @@ viewRouter.get('/signup', (req, res) => {
 
 
 //Define a route to handle the signup form submission
-viewRouter.post('/signup',  async (req, res) => {
+viewRouter.post('/signup',SignUpValidator.ValidateUserCreationWithJoi, async (req, res) => {
     
     const response = await userService.Signup({
         email: req.body.email,
@@ -204,7 +205,7 @@ viewRouter.post('/delete/:taskId', async (req, res) => {
     const taskId = req.params.taskId; 
 
     try {
-        const deletedTaskResponse = await taskService.deleteTask(taskId); // Use taskId here
+        const deletedTaskResponse = await taskService.deleteTask(taskId); 
 
         if (deletedTaskResponse.success) {
             res.redirect("/todo/welcome");

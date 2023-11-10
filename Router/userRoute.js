@@ -1,11 +1,12 @@
 const express = require('express');
 const controller = require('../Controller/usercontroller')
 const taskcontroller = require('../Controller/taskcontroller')
+const SignUpValidator = require('../Validator/ValidatorMiddleware')
 
 const userRouter = express.Router();
 
 // Create New User
-userRouter.post('/signup',  controller.signUp)
+userRouter.post('/signup', SignUpValidator.ValidateUserCreationWithValidatorJs, controller.signUp)
 
 // Login 
 userRouter.post('/login', controller.Login)

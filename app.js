@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoDB = require('./Database/connect.db')
+const rateLimit = require("express-rate-limit");
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
@@ -22,6 +23,17 @@ const PORT = process.env.PORT
 // Connecting to mongoDB server
 mongoDB.connectToMongoDB()
 
+// Rate Limit
+const limiter = rateLimit({
+	windowMs: 0.5 * 60 * 1000, // 15 minutes
+	max: 4, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter)
 
 app.use(morgan('dev'));
 app.use(express.json()) 
